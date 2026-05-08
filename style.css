@@ -1,0 +1,386 @@
+:root {
+    --bg-color: #050505;
+    --neon-blue: #00f2ff;
+    --neon-pink: #ff00ea;
+    --neon-yellow: #f3ea5f;
+    --text-color: #e0e0e0;
+    --glass-bg: rgba(20, 20, 25, 0.7);
+    --border-glow: 0 0 10px rgba(0, 242, 255, 0.5);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: crosshair;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Rajdhani', sans-serif;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* Scanlines Effect */
+.scanlines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(
+        rgba(18, 16, 16, 0) 50%,
+        rgba(0, 0, 0, 0.25) 50%
+    ),
+    linear-gradient(
+        90deg,
+        rgba(255, 0, 0, 0.06),
+        rgba(0, 255, 0, 0.02),
+        rgba(0, 0, 255, 0.06)
+    );
+    background-size: 100% 2px, 3px 100%;
+    pointer-events: none;
+    z-index: 100;
+}
+
+/* Typography */
+h1, h2, h3 {
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.neon-text-blue {
+    color: var(--neon-blue);
+    text-shadow: 0 0 10px var(--neon-blue);
+}
+
+.neon-text-pink {
+    color: var(--neon-pink);
+    text-shadow: 0 0 10px var(--neon-pink);
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 10%;
+    background: rgba(0, 0, 0, 0.8);
+    border-bottom: 1px solid var(--neon-blue);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(10px);
+}
+
+.logo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--text-color);
+}
+
+.logo span {
+    color: var(--neon-pink);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+.nav-link {
+    color: var(--text-color);
+    text-decoration: none;
+    margin-left: 2rem;
+    font-weight: 600;
+    transition: 0.3s;
+    font-size: 0.9rem;
+}
+
+.nav-link:hover {
+    color: var(--neon-blue);
+    text-shadow: 0 0 8px var(--neon-blue);
+}
+
+/* Hero Section */
+.hero-section {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 10%;
+}
+
+.hero-title {
+    font-size: 5rem;
+    font-weight: 900;
+    margin-bottom: 0.5rem;
+    position: relative;
+    color: var(--text-color);
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    color: var(--neon-blue);
+    margin-bottom: 2rem;
+    font-weight: 300;
+    letter-spacing: 4px;
+}
+
+.hero-banner-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 2rem 0;
+    border: 2px solid var(--neon-blue);
+    box-shadow: var(--border-glow);
+    overflow: hidden;
+    position: relative;
+}
+
+.hero-banner {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: brightness(0.8) contrast(1.2);
+    transition: 0.5s ease;
+}
+
+.hero-banner:hover {
+    filter: brightness(1);
+    transform: scale(1.02);
+}
+
+.hero-stats {
+    display: flex;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+.stat-box {
+    border-left: 3px solid var(--neon-pink);
+    padding-left: 1rem;
+    text-align: left;
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.7rem;
+    color: var(--neon-pink);
+}
+
+.stat-value {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+/* Glass Panels */
+.glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    padding: 2rem;
+}
+
+/* Section Common */
+section {
+    padding: 5rem 10%;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    border-left: 5px solid var(--neon-blue);
+    padding-left: 1.5rem;
+}
+
+/* About Section */
+.profile-card {
+    position: relative;
+    padding: 2rem;
+    border: 1px solid rgba(0, 242, 255, 0.3);
+    font-size: 1.2rem;
+}
+
+.scanner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--neon-blue);
+    box-shadow: 0 0 15px var(--neon-blue);
+    animation: scan 3s linear infinite;
+}
+
+@keyframes scan {
+    0% { top: 0; }
+    100% { top: 100%; }
+}
+
+/* Hobby Cards */
+.hobby-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.hobby-card {
+    transition: 0.3s;
+    border: 1px solid transparent;
+}
+
+.hobby-card:hover {
+    border-color: var(--neon-pink);
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(255, 0, 234, 0.2);
+}
+
+.hobby-card h3 {
+    color: var(--neon-pink);
+    margin-bottom: 1rem;
+}
+
+.tag-container {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+}
+
+.tag {
+    background: rgba(255, 0, 234, 0.1);
+    color: var(--neon-pink);
+    border: 1px solid var(--neon-pink);
+    padding: 0.2rem 0.6rem;
+    font-size: 0.7rem;
+    border-radius: 2px;
+}
+
+/* Buttons */
+.cyber-button {
+    background: transparent;
+    color: var(--neon-blue);
+    border: 1px solid var(--neon-blue);
+    padding: 1rem 2rem;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+    transition: 0.3s;
+    margin-top: 1.5rem;
+}
+
+.cyber-button:hover {
+    background: var(--neon-blue);
+    color: #000;
+    box-shadow: 0 0 20px var(--neon-blue);
+}
+
+/* Contact Section */
+.contact-section {
+    text-align: center;
+}
+
+.uplink-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 0.8rem;
+    color: var(--neon-blue);
+}
+
+.status-indicator {
+    width: 8px;
+    height: 8px;
+    background: var(--neon-blue);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--neon-blue);
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.8rem;
+    color: #666;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-title { font-size: 3rem; }
+    .navbar { padding: 1rem 5%; }
+    .nav-link { margin-left: 1rem; }
+}
+/* Mission Objective Section */
+.objective-section {
+    margin-top: 4rem;
+    text-align: center;
+}
+
+.mission-box {
+    border: 2px solid var(--neon-yellow);
+    padding: 3rem;
+    position: relative;
+    background: rgba(243, 234, 95, 0.05);
+}
+
+.mission-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2rem;
+    color: var(--neon-yellow);
+    margin-bottom: 2rem;
+    text-shadow: 0 0 15px rgba(243, 234, 95, 0.5);
+}
+
+.progress-bar-container {
+    width: 100%;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-bar {
+    width: 65%;
+    height: 100%;
+    background: var(--neon-yellow);
+    box-shadow: 0 0 15px var(--neon-yellow);
+    animation: loading 2s ease-out;
+}
+
+@keyframes loading {
+    0% { width: 0; }
+    100% { width: 65%; }
+}
+
+/* Hobby Icons */
+.hobby-icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 1.5rem;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.marvel-icon { background-image: url('https://upload.wikimedia.org/wikipedia/commons/b/b9/Marvel_Logo.svg'); filter: brightness(0) invert(1) drop-shadow(0 0 5px var(--neon-pink)); }
+.craft-icon { background-image: url('https://img.icons8.com/ios-filled/50/ff00ea/origami.png'); }
+.anime-icon { background-image: url('https://img.icons8.com/ios-filled/50/00f2ff/sharingan.png'); }
